@@ -1,19 +1,16 @@
 const readline = require('readline');
 const validator = require('validator');
 const fs = require('fs');
-const { mkdir } = require('node:fs/promises');
-const { join } = require('node:path');
 
-const fileNameTarget = 'data/contacts.json';
+const dirPath = 'data';
+const fileNameTarget = `${dirPath}/contacts.json`;
 
-async function makeDirectory() {
-  const projectFolder = join(__dirname, 'data');
-  const dirCreation = await mkdir(projectFolder, { recursive: true });
-  return dirCreation;
+function makeDirectory() {
+  return fs.mkdirSync(dirPath);
 }
 
 function makeFile() {
-  fs.writeFileSync(fileNameTarget, JSON.stringify([]));
+  return fs.writeFileSync(fileNameTarget, '[]', 'utf-8');
 }
 
 const rl = readline.createInterface({
@@ -21,66 +18,76 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-const questions = (theQuestion, result, type, errorMessage) => {
+const isValidInput = (type, input) => {
+  switch (type) {
+    case 'name':
+      return true;
+    case 'phone':
+      return validator.isMobilePhone(input, 'id-ID');
+    case 'email':
+      return validator.isEmail(input);
+    default:
+      return false;
+  }
+};
+
+const questions = (theQuestion, type, errorMessage) => {
   return new Promise((resolve, reject) => {
     rl.question(theQuestion, (input) => {
-      if (type === 'name') {
-        resolve(result + ' ' + input);
-      } else if (
-        type === 'phoneNumber' &&
-        validator.isMobilePhone(input, 'id-ID')
-      ) {
-        resolve(result + ' ' + input);
-      } else if (type === 'email' && validator.isEmail(input)) {
-        resolve(result + ' ' + input);
+      if (isValidInput(type, input)) {
+        resolve(input);
       } else {
         console.log(errorMessage);
-        const newAnswer = questions(
-          theQuestion,
-          result,
-          type,
-          errorMessage
-        ).then((res) => res);
-        resolve(newAnswer);
+        resolve(questions(theQuestion, type, errorMessage));
       }
     });
   });
 };
 
+const saveData = (data) => {
+  const file = fs.readFileSync(fileNameTarget, 'utf-8');
+
+  const convertContact = JSON.parse(file);
+
+  convertContact.push(data);
+
+  fs.writeFileSync(fileNameTarget, JSON.stringify(convertContact));
+
+  console.log('Data berhasil ditambahkan...');
+};
+
 const main = async () => {
   try {
-    const name = await questions('What is your name? ', 'Your name : ', 'name');
-    const phoneNumber = await questions(
-      'What is your phone number? ',
-      'Your number : ',
-      'phoneNumber',
-      'invalid phoneNumber'
-    );
-    const email = await questions(
-      'What is your email? ',
-      'Your email : ',
-      'email',
-      'invalid Email'
-    );
-
-    console.log(name);
-    console.log(phoneNumber);
-    console.log(email);
-
-    const data = { name, phoneNumber, email };
+    if (!fs.existsSync(dirPath)) {
+      makeDirectory();
+    }
 
     if (!fs.existsSync(fileNameTarget)) {
-      makeDirectory().catch(console.error);
       makeFile();
     }
 
-    const file = fs.readFileSync(fileNameTarget, 'utf-8');
+    const name = await questions('What is your name? ', 'name');
+    const phone = await questions(
+      'What is your phone number? ',
+      'phone',
+      'invalid phoneNumber...'
+    );
+    const email = await questions(
+      'What is your email? ',
+      'email',
+      'invalid Email...'
+    );
 
-    const convertContact = JSON.parse(file);
+    console.log(' ');
+    console.log('-----------------------------');
+    console.log('Your name : ', name);
+    console.log('Your phone : ', phone);
+    console.log('Your email : ', email);
+    console.log('-----------------------------');
 
-    convertContact.push(data);
+    const data = { name, phone, email };
 
-    fs.writeFileSync(fileNameTarget, JSON.stringify(convertContact));
+    saveData(data);
   } catch (error) {
     console.error(error);
   } finally {

@@ -1,12 +1,5 @@
 [
-  {
-    "name": "Your name :  test 1",
-    "phoneNumber": "Your number :  08111111111111",
-    "email": "Your email :  test1@test.com"
-  },
-  {
-    "name": "Your name :  test 2",
-    "phoneNumber": "Your number :  08122222222222",
-    "email": "Your email :  test2@test.com"
-  }
+  { "name": "test1", "phone": "081111111111", "email": "test1@test.com" },
+  { "name": "test2", "phone": "08122222222", "email": "test2@test.com" },
+  { "name": "test3", "phone": "081333333333", "email": "test3@test.com" }
 ]
