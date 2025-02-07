@@ -1,9 +1,18 @@
-import * as fs from 'fs';
+const fs = require('node:fs');
 
 const dirPath = 'data';
-export const fileNameTarget = `${dirPath}/contacts.json`;
+const fileNameTarget = `${dirPath}/contacts.json`; // ini
 
-export function checkExistsDir() {
+function makeDirectory() {
+  return fs.mkdirSync(dirPath);
+}
+
+function makeFile() {
+  return fs.writeFileSync(fileNameTarget, '[]', 'utf-8');
+}
+
+//ini
+function checkExistsDir() {
   if (!fs.existsSync(dirPath)) {
     makeDirectory();
   }
@@ -13,10 +22,4 @@ export function checkExistsDir() {
   }
 }
 
-export function makeDirectory() {
-  return fs.mkdirSync(dirPath);
-}
-
-export function makeFile() {
-  return fs.writeFileSync(fileNameTarget, '[]', 'utf-8');
-}
+module.exports = { fileNameTarget, checkExistsDir };

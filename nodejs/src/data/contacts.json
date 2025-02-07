@@ -1,6 +1,5 @@
 [
   { "name": "test1", "phone": "08123456789", "email": "test1.test.com" },
-  { "name": "test1", "phone": "08123456789", "email": "test1.test.com" },
   { "name": "test2", "phone": "08123456780", "email": "test2.test.com" },
   { "name": "test3", "phone": "08123456781", "email": "test3.test.com" },
   { "name": "test4", "phone": "08123456782", "email": "test4.test.com" },

@@ -1,12 +1,12 @@
-import * as readline from 'node:readline';
-import { isValidInput } from '../utils/validator.js';
+const readline = require('readline');
+const { isValidInput } = require('../utils/validator.js');
 
-export const rl = readline.createInterface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-export const questions = (theQuestion, type, errorMessage) => {
+const questions = (theQuestion, type, errorMessage) => {
   return new Promise((resolve, reject) => {
     rl.question(theQuestion, (input) => {
       if (isValidInput(type, input)) {
@@ -18,3 +18,5 @@ export const questions = (theQuestion, type, errorMessage) => {
     });
   });
 };
+
+module.exports = { questions, rl };

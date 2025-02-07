@@ -1,8 +1,8 @@
-import validator from 'validator';
+const validator = require('validator');
 
 const { isMobilePhone, isEmail } = validator;
 
-export const isValidInput = (type, input) => {
+const isValidInput = (type, input) => {
   switch (type) {
     case 'name':
       return true;
@@ -14,3 +14,5 @@ export const isValidInput = (type, input) => {
       return false;
   }
 };
+
+module.exports = { isValidInput };

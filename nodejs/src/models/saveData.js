@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import { fileNameTarget } from '../utils/createDir.js';
+const fs = require('node:fs');
+const { fileNameTarget } = require('../utils/createDir.js');
 
-export const saveData = (data) => {
+const saveData = (data) => {
   const file = fs.readFileSync(fileNameTarget, 'utf-8');
 
   const convertContact = JSON.parse(file);
@@ -12,3 +12,5 @@ export const saveData = (data) => {
 
   console.log('Data berhasil ditambahkan...');
 };
+
+module.exports = { saveData };

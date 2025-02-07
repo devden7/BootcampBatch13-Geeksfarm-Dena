@@ -1,15 +1,14 @@
-import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
-import { saveData } from './models/saveData.js';
-import { checkExistsDir } from './utils/createDir.js';
+const yargs = require('yargs');
+const { saveData } = require('./models/saveData.js');
+const { checkExistsDir } = require('./utils/createDir.js');
 
 checkExistsDir();
 
-yargs(hideBin(process.argv))
-  .command(
-    'add',
-    'add new contact',
-    {
+yargs
+  .command({
+    command: 'add',
+    describe: 'add new contact',
+    builder: {
       name: {
         describe: 'contact name',
         demandOption: true,
@@ -26,7 +25,7 @@ yargs(hideBin(process.argv))
         type: 'string',
       },
     },
-    (argv) => {
+    handler(argv) {
       const contact = {
         name: argv.name,
         phone: argv.phone,
@@ -34,6 +33,6 @@ yargs(hideBin(process.argv))
       };
 
       saveData(contact);
-    }
-  )
+    },
+  })
   .parse();

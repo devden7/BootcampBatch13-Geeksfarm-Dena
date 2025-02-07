@@ -1,6 +1,6 @@
-import { saveData } from './models/saveData.js';
-import { checkExistsDir } from './utils/createDir.js';
-import { questions, rl } from './controllers/questions.js';
+const { saveData } = require('./models/saveData.js');
+const { checkExistsDir } = require('./utils/createDir.js');
+const { questions, rl } = require('./controllers/questions.js');
 
 const main = async () => {
   try {
