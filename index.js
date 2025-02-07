@@ -1,6 +1,7 @@
 const { saveData } = require('./models/saveData.js');
 const { checkExistsDir } = require('./utils/createDir.js');
-const { questions, rl } = require('./controllers/questions.js');
+const { questions } = require('./controllers/questions.js');
+const { rl } = require('./utils/createReadLine.js');
 
 const main = async () => {
   try {
@@ -18,15 +19,7 @@ const main = async () => {
       'invalid Email...'
     );
 
-    console.log(' ');
-    console.log('-----------------------------');
-    console.log('Your name : ', name);
-    console.log('Your phone : ', phone);
-    console.log('Your email : ', email);
-    console.log('-----------------------------');
-
     const data = { name, phone, email };
-
     saveData(data);
   } catch (error) {
     console.error(error);

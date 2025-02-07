@@ -1,10 +1,5 @@
-const readline = require('readline');
+const { rl } = require('../utils/createReadLine.js');
 const { isValidInput } = require('../utils/validator.js');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 
 const questions = (theQuestion, type, errorMessage) => {
   return new Promise((resolve, reject) => {

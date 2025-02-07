@@ -2,10 +2,10 @@ const yargs = require('yargs');
 const { saveData } = require('./models/saveData.js');
 const { checkExistsDir } = require('./utils/createDir.js');
 
-checkExistsDir();
+const main = () => {
+  checkExistsDir();
 
-yargs
-  .command({
+  yargs.command({
     command: 'add',
     describe: 'add new contact',
     builder: {
@@ -34,5 +34,9 @@ yargs
 
       saveData(contact);
     },
-  })
-  .parse();
+  });
+
+  yargs.parse();
+};
+
+main();
