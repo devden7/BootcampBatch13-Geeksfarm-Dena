@@ -81,7 +81,7 @@ yargs
     },
   })
   .command({
-    command: 'update [name] [new-name] [new-phone] [new-email]',
+    command: 'update <name> [new-name] [new-phone] [new-email]',
     describe: 'update detail contact',
     builder: (yargs) => {
       yargs.positional('name', {
@@ -105,12 +105,10 @@ yargs
         describe: 'update contact data',
         demandOption: false,
         type: 'string',
-        alias: 'email',
       });
     },
     handler(argv) {
       checkExistsDir();
-      console.log(argv);
       const contact = {
         name: argv.name,
         newName: argv.newName,
