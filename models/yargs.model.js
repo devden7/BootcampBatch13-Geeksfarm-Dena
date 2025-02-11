@@ -73,7 +73,6 @@ const deleteContact = (name) => {
 const updateContact = (contact) => {
   const data = findData();
   const findDetailData = data.find((value) => value.name === contact.name);
-  if (!findDetailData) return console.log('Contact tidak ditemukan');
 
   const findDetailDataIndex = data.findIndex(
     (value) => value.name === contact.name
@@ -99,4 +98,5 @@ module.exports = {
   findContactDetail,
   deleteContact,
   updateContact,
+  findData,
 };

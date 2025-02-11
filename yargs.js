@@ -5,8 +5,10 @@ const {
   findContactDetail,
   deleteContact,
   updateContact,
+  findData,
 } = require('./models/yargs.model.js');
 const { checkExistsDir } = require('./utils/createDir.js');
+const { isValidInput } = require('./utils/validator.js');
 
 yargs
   .command({
@@ -23,19 +25,47 @@ yargs
         demandOption: true,
         type: 'string',
       },
-      name: {
-        describe: 'contact name',
+      email: {
+        describe: 'contact email',
         demandOption: false,
         type: 'string',
       },
     },
     handler(argv) {
       checkExistsDir();
+      const isValidName = isValidInput('name', argv.name);
+      const isValidPhone = isValidInput('phone', argv.phone);
+      const isValidEmail = isValidInput('email', argv.email);
+      if (!isValidName && !isValidPhone && isValidEmail)
+        //DONE
+        return console.log('Name already exist and Phone number is not valid!');
+      if (!isValidName && isValidPhone && isValidEmail)
+        //DONE
+        return console.log('Name already exist!');
+      if (!isValidPhone && isValidName && isValidEmail)
+        //DONE
+        return console.log('Phone number is not valid!');
+      if (!isValidPhone && !isValidEmail && isValidName)
+        //DONE
+        return console.log(
+          'Phone number is not valid! and Email is not valid!'
+        );
+      if (!isValidEmail && isValidName && isValidPhone)
+        //DONE
+        return console.log('Email is not valid!');
+      if (!isValidEmail && !isValidName && isValidPhone)
+        //DONE
+        return console.log('Email is not valid and Name is already exist!');
+      if (!isValidName && !isValidPhone && !isValidEmail)
+        //DONE
+        return console.log(
+          'Name already exist, Phone number is not valid and Email is not valid!'
+        );
 
       const contact = {
         name: argv.name,
         phone: argv.phone,
-        email: argv.email,
+        email: argv.email || '',
       };
       saveData(contact);
     },
@@ -109,6 +139,33 @@ yargs
     },
     handler(argv) {
       checkExistsDir();
+
+      const data = findData();
+      const findDetailData = data.find((value) => value.name === argv.name);
+      if (!findDetailData) return console.log('Contact tidak ditemukan');
+
+      const isValidName = isValidInput('name', argv.newName, 'edit');
+      const isValidPhone = isValidInput('phone', argv.newPhone, 'edit');
+      const isValidEmail = isValidInput('email', argv.newEmail, 'edit');
+      if (!isValidName && !isValidPhone && isValidEmail)
+        return console.log('Name already exist and Phone number is not valid!');
+      if (!isValidName && isValidPhone && isValidEmail)
+        return console.log('Name already exist!');
+      if (!isValidPhone && isValidName && isValidEmail)
+        return console.log('Phone number is not valid!');
+      if (!isValidPhone && !isValidEmail && isValidName)
+        return console.log(
+          'Phone number is not valid! and Email is not valid!'
+        );
+      if (!isValidEmail && isValidName && isValidPhone)
+        return console.log('Email is not valid!');
+      if (!isValidEmail && !isValidName && isValidPhone)
+        return console.log('Email is not valid and Name is already exist!');
+      if (!isValidName && !isValidPhone && !isValidEmail)
+        return console.log(
+          'Name already exist, Phone number is not valid and Email is not valid!'
+        );
+
       const contact = {
         name: argv.name,
         newName: argv.newName,
