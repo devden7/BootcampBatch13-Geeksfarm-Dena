@@ -33,6 +33,32 @@ yargs
     },
     handler(argv) {
       checkExistsDir();
+
+      // const inputData = [
+      //   {
+      //     field: 'name',
+      //     isValid: isValidInput('name', argv.name),
+      //     errorMsg: 'Name already exist',
+      //   },
+      //   {
+      //     field: 'phone',
+      //     isValid: isValidInput('phone', argv.phone),
+      //     errorMsg: ' Phone number is not valid ',
+      //   },
+      //   {
+      //     field: 'email',
+      //     isValid: isValidInput('email', argv.email),
+      //     errorMsg: 'Email is not valid!',
+      //   },
+      // ];
+
+      // const filterErr = inputData
+      //   .filter((value) => !value.isValid)
+      //   .map((data) => data.errorMsg);
+
+      // if (filterErr.length > 0) return console.log(filterErr.join(' - '));
+      // console.log(filterErr);
+
       const isValidName = isValidInput('name', argv.name);
       const isValidPhone = isValidInput('phone', argv.phone);
       const isValidEmail = isValidInput('email', argv.email);
