@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      ul {
+        display: flex;
+        gap: 10px;
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        color: ho;
+      }
+      a:hover {
+        color: red;
+      }
+
+      header {
+        display: flex;
+        justify-content: center;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li><a href="/contact">contact</a></li>
+          <li><a href="/about">about</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container"><%- body %></main>
+  </body>
+</html>
