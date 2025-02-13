@@ -1,0 +1,20 @@
+<%- include('layout/header') %>
+<%- include('layout/nav') %>
+    <h2>this is contact page</h2>
+
+    <div>
+      <p>All contact</p>
+      <ul>
+        <% if (cont.length < 1) { %>
+        <p>Contact data is empty</p>
+        <% } else { %> <% cont.forEach((value, i) => { %>
+        <li class="card">
+          <p>Data : <%= i + 1 %></p>
+          <p>name : <%= value.name %></p>
+          <p>email : <%= value.email %></p>
+        </li>
+        <% })}%>
+      </ul>
+    </div>
+
+    <%- include('layout/footer') %>
