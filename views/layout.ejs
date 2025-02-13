@@ -5,32 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
       * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
       }
+
+      html {
+        font-family: 'Inter';
+      }
+
+      h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
       ul {
         display: flex;
+        align-items: center;
+        height: inherit;
         gap: 10px;
         list-style: none;
       }
+
       a {
         text-decoration: none;
         color: black;
-        color: ho;
       }
+
       a:hover {
         color: red;
       }
 
-      header {
+      nav {
         display: flex;
         justify-content: center;
+        height: 40px;
       }
+
       .container {
         display: flex;
         justify-content: center;
+        max-width: 1400px;
+      }
+
+      section {
+        max-width: 800px;
+        width: 100%;
+      }
+
+      .contact-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+      }
+
+      .contact-table th,
+      .contact-table td {
+        border: 1px solid #ddd;
+        padding: 5px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .contact-table th {
+        background-color: #d4d7da;
+        color: black;
+        font-weight: bold;
+        text-transform: uppercase;
       }
     </style>
   </head>
