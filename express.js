@@ -1,11 +1,21 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const morgan = require('morgan');
+const { findData } = require('./models/yargs.model');
 
 const app = express();
 const port = 3000;
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.use(express.static('public'));
+app.use(morgan('dev'));
+
+app.use((req, res, next) => {
+  console.log('Time:', Date.now());
+  next();
+});
+
 app.get('/', (req, res) => {
   res.render('index', {
     title: 'Home page',
@@ -13,21 +23,25 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-  const cont = [
-    {
-      name: 'Dena',
-      email: 'Dena@test.com',
-    },
-    {
-      name: 'Dena2',
-      email: 'Dena2@test.com',
-    },
-    {
-      name: 'Dena3',
-      email: 'Dena3@test.com',
-    },
-  ];
-  res.render('contact', { title: 'Contact page', cont });
+  const data = findData();
+
+  res.render('contact', { title: 'Contact page', cont: data });
+});
+
+app.get('/contactDetail/:name', (req, res) => {
+  const params = req.params;
+  const data = findData();
+
+  const item = data.find((value) => value.name === params.name);
+  if (!item) {
+    return res.redirect('/notFound');
+  }
+  console.log(item);
+  res.render('contactDetail', {
+    title: 'Contact Detail',
+    name: params,
+    data: item,
+  });
 });
 
 app.get('/about', (req, res) => {
