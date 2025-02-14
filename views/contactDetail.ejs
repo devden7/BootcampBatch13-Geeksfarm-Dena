@@ -1,10 +1,22 @@
 <%- contentFor('body') %>
 
-<section>
-  <h1>Contact Detail</h1>
-  <div class="card">
-    <div>Name : <%= data.name %></div>
-    <div>phone :<%= data.phone %></div>
-    <div>Email : <%= data.email %></div>
+<section class="px-5 my-5">
+  <h1 class="text-center mb-5 font-bold text-xl">Contact Detail</h1>
+  <div class="flex flex-col items-center">
+    <div
+      class="w-full flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm"
+    >
+      <p class="border-b-2 border-gray-200 py-2 text-gray-500">
+        Name :<span class="font-medium text-gray-900"> <%= data.name %></span>
+      </p>
+      <p class="border-b-2 border-gray-200 py-2 text-gray-500">
+        phone :
+        <span class="font-medium text-gray-900"><%= data.phone %></span>
+      </p>
+      <p class="border-b-2 border-gray-200 py-2 text-gray-500">
+        Email :
+        <span class="font-medium text-gray-900"><%= data.email %></span>
+      </p>
+    </div>
   </div>
 </section>

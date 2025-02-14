@@ -3,126 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
     <title><%= title %></title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-      * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-      }
-
-      html {
-        font-family: 'Inter';
-      }
-
-      h1 {
-        font-size: 20px;
-        margin-bottom: 5px;
-      }
-      ul {
-        display: flex;
-        align-items: center;
-        height: inherit;
-        gap: 10px;
-        list-style: none;
-      }
-
-      a {
-        text-decoration: none;
-        color: black;
-      }
-
-      a:hover {
-        color: red;
-      }
-
-      nav {
-        display: flex;
-        justify-content: center;
-        height: 40px;
-      }
-
-      .container {
-        display: flex;
-        justify-content: center;
-        max-width: 1400px;
-      }
-
-      section {
-        max-width: 800px;
-        width: 100%;
-      }
-
-      .contact-table {
-        width: 100%;
-        border-collapse: collapse;
-        border-radius: 8px;
-      }
-
-      .contact-table th,
-      .contact-table td {
-        border: 1px solid #ddd;
-        padding: 5px;
-        text-align: center;
-        font-size: 15px;
-      }
-
-      .contact-table th {
-        background-color: #d4d7da;
-        color: black;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-
-      .about-content {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .about-content_image {
-        height: 100px;
-        width: 100px;
-        border-radius: 10000px;
-        object-fit: cover;
-      }
-
-      .btn {
-        font-size: 12px;
-        border-radius: 10px;
-        padding: 5px;
-        background-color: green;
-        cursor: pointer;
-        color: white;
-      }
-
-      .btn:hover {
-        background-color: #095609;
-        color: white;
-      }
-
-      .card {
-        padding: 5px;
-        max-width: 40%;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
-      }
-    </style>
   </head>
 
   <body>
     <header>
-      <nav>
-        <ul>
-          <li>
+      <nav class="h-12">
+        <ul
+          class="h-full border-b border-gray-200 flex justify-center gap-2 items-center"
+        >
+          <li class="hover:text-blue-400">
             <a href="/">Home</a>
           </li>
-          <li><a href="/contact">contact</a></li>
-          <li><a href="/about">about</a></li>
+          <li class="hover:text-blue-400"><a href="/contact">contact</a></li>
+          <li class="hover:text-blue-400"><a href="/about">about</a></li>
         </ul>
       </nav>
     </header>
-    <main class="container"><%- body %></main>
+    <main class="max-w-[1400px] mx-auto"><%- body %></main>
   </body>
 </html>
