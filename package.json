@@ -5,6 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "01": "node 01-writeFile",
+    "02": "node 02-readFile",
+    "03": "node 03-readLine",
+    "04": "node 04-errorHandling",
+    "06": "nodemon 06-httpCoreModule",
+    "07": "nodemon 07-expressEjs",
     "fol": "ls",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

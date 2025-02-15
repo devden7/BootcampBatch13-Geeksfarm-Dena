@@ -6,7 +6,7 @@ http
     const url = req.url;
     res.writeHead(200, { 'Content-type': 'text/html' });
     if (url === '/about') {
-      fs.readFile('views/about.html', (err, data) => {
+      fs.readFile('views/httpCoreModule/about.html', (err, data) => {
         if (err) {
           console.error(err);
           return;
@@ -17,7 +17,7 @@ http
         res.end();
       });
     } else if (url === '/contact') {
-      fs.readFile('views/contact.html', (err, data) => {
+      fs.readFile('views/httpCoreModule/contact.html', (err, data) => {
         if (err) {
           console.error(err);
           return;
@@ -28,7 +28,7 @@ http
         res.end();
       });
     } else {
-      fs.readFile('views/index.html', (err, data) => {
+      fs.readFile('views/httpCoreModule/index.html', (err, data) => {
         if (err) {
           console.error(err);
           return;
@@ -39,4 +39,4 @@ http
       });
     }
   })
-  .listen(3000, () => console.log('Server is running on port 3000'));
+  .listen(3000, () => console.log('Server is running on port localhost:3000'));

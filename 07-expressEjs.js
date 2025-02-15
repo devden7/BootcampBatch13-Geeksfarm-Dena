@@ -1,10 +1,12 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const morgan = require('morgan');
-const { findData } = require('./models/yargs.model');
+const {
+  findContactList,
+  findContactDetail,
+} = require('./controllers/contact.controller');
 
 const app = express();
-const port = 3000;
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -23,23 +25,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
-  const data = findData();
-
+  const data = findContactList();
   res.render('contact', { title: 'Contact page', cont: data });
 });
 
 app.get('/contactDetail/:name', (req, res) => {
-  const params = req.params;
-  const data = findData();
+  const paramsId = req.params.name;
+  const item = findContactDetail(paramsId);
 
-  const item = data.find((value) => value.name === params.name);
   if (!item) {
     return res.redirect('/notFound');
   }
-  console.log(item);
   res.render('contactDetail', {
     title: 'Contact Detail',
-    name: params,
     data: item,
   });
 });
@@ -60,5 +58,5 @@ app.use('/', (req, res) => {
   res.send('404 Page not found');
 });
 app.listen(port, () => {
-  console.log('running express in port 3000');
+  console.log('running express in localhost:3000');
 });

@@ -1,7 +1,20 @@
-const { saveData } = require('./models/saveData.js');
+const { saveData } = require('./model/contact-fs.model.js');
 const { checkExistsDir } = require('./utils/createDir.js');
-const { questions } = require('./controllers/questions.js');
 const { rl } = require('./utils/createReadLine.js');
+const { isValidInput } = require('./utils/validator.js');
+
+const questions = (theQuestion, type, errorMessage) => {
+  return new Promise((resolve, reject) => {
+    rl.question(theQuestion, (input) => {
+      if (isValidInput(type, input)) {
+        resolve(input);
+      } else {
+        console.log(errorMessage);
+        resolve(questions(theQuestion, type, errorMessage));
+      }
+    });
+  });
+};
 
 const main = async () => {
   try {
@@ -21,6 +34,7 @@ const main = async () => {
 
     const data = { name, phone, email };
     saveData(data);
+    console.log('Success add a contact');
   } catch (error) {
     console.error(error);
   } finally {
