@@ -13,7 +13,7 @@ const findContactList = () => {
   checkExistsDir();
   const data = findData();
   if (data.length < 1) console.log('Cannot find contact...');
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -23,7 +23,7 @@ const findContactDetail = (name) => {
   const data = findData();
   const findDetailData = data.find((value) => value.name === name);
   if (!findDetailData) return console.log('Cannot find contact...');
-  console.log(findDetailData);
+  // console.log(findDetailData);
 
   return findDetailData;
 };
@@ -62,7 +62,6 @@ const updateContact = (contact) => {
   if (findDetailData) {
     data[findDetailDataIndex] = newContactData;
   }
-
   saveData(data, 'update');
   console.log(`Contact information updated...`);
 };

@@ -1,7 +1,14 @@
 <%- contentFor('body') %>
 <section class="relative overflow-x-auto px-5 my-5">
   <h1 class="text-center mb-5 font-bold text-xl">List contacts</h1>
-
+  <div class="mb-4">
+    <a
+      href="/add-contact"
+      target="_blank"
+      class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-3"
+      >Add Contact</a
+    >
+  </div>
   <div>
     <% if (cont.length < 1) { %>
     <p>Contact data is empty</p>
@@ -21,12 +28,26 @@
           <td class="px-6 py-4"><%= i+1 %></td>
           <td class="px-6 py-4"><%= value.name %></td>
           <td class="px-6 py-4"><%= value.email %></td>
-          <td class="px-6 py-4">
+          <td class="px-6 py-4 flex flex-wrap gap-2">
             <a
               href="contactDetail/<%= value.name %>"
-              target="_blank"
-              class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-1 mb-2"
+              class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-2 py-1"
               >Detail</a
+            >
+
+            <form action="/delete" method="post">
+              <input type="hidden" name="name" value="<%= value.name %>" />
+              <button
+                class="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-2 py-1 cursor-pointer"
+                type="submit"
+              >
+                Delete
+              </button>
+            </form>
+            <a
+              href="/edit-contact/<%= value.name %>"
+              class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1"
+              >Edit</a
             >
           </td>
         </tr>
