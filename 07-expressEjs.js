@@ -1,14 +1,15 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const morgan = require('morgan');
+const { validationResult, body } = require('express-validator');
 const {
   findContactList,
   findContactDetail,
   createContact,
   deleteContact,
   updateContact,
+  findData,
 } = require('./controllers/contact.controller');
-const { isValidInput } = require('./utils/validator');
 
 const app = express();
 
@@ -60,25 +61,35 @@ app.get('/product/:idProduct/', (req, res) => {
 });
 
 app.get('/add-contact', (req, res) => {
-  res.render('contactForm', { title: 'Add Contact', type: 'add' });
+  res.render('contactForm', { title: 'Add Contact', type: 'add', errors: {} });
 });
 
-app.post('/create-contact', (req, res) => {
-  const { name, phone, email } = req.body;
-  const errors = [];
-  //validation
-  // if (!isValidInput('name', name)) {
-  //   errors.push('Name already exist');
-  // }
-  // if (isValidInput('phone', phone)) {
-  //   errors.push('Phone number is not valid');
-  // }
-  // if (isValidInput('email', email)) {
-  //   errors.push('Email is not valid!');
-  // }
-  if (errors.length > 0) {
-    return;
-  } else {
+app.post(
+  '/create-contact',
+  body('name').custom((value) => {
+    const data = findData();
+    const findDataInput = data.find(
+      (item) => item.name.toLowerCase() === value.toLowerCase()
+    );
+    if (findDataInput) {
+      throw new Error('Name already exist');
+    }
+
+    return true;
+  }),
+  body('phone').isMobilePhone('id-ID').withMessage('Phone number is not valid'),
+  body('email').isEmail().withMessage('Email is not valid!'),
+  (req, res) => {
+    const errors = validationResult(req);
+    const { name, phone, email } = req.body;
+
+    if (!errors.isEmpty()) {
+      return res.render('contactForm', {
+        title: 'Add Contact',
+        type: 'add',
+        errors: errors.mapped(),
+      });
+    }
     const contact = {
       name,
       phone,
@@ -87,7 +98,7 @@ app.post('/create-contact', (req, res) => {
     createContact(contact);
     res.redirect('/contact');
   }
-});
+);
 
 app.post('/delete', (req, res) => {
   const nameId = req.body.name;
@@ -103,20 +114,55 @@ app.get('/edit-contact/:name', (req, res) => {
     contact: data,
     title: 'edit Contact',
     type: 'edit',
+    errors: {},
   });
 });
 
-app.post('/update-contact/', (req, res) => {
-  const { oldName, name, phone, email } = req.body;
-  const contact = {
-    name: oldName,
-    newName: name,
-    newPhone: phone,
-    newEmail: email,
-  };
-  updateContact(contact);
-  res.redirect('/contact');
-});
+app.post(
+  '/update-contact/',
+  body('name').custom((value, { req }) => {
+    if (value.toLowerCase() === req.body.oldName.toLowerCase()) {
+      return true;
+    }
+    const data = findData();
+    const findDataInput = data.find(
+      (item) => item.name.toLowerCase() === value.toLowerCase()
+    );
+
+    if (findDataInput) {
+      throw new Error('Name already exist');
+    }
+
+    return true;
+  }),
+  body('phone').isMobilePhone('id-ID').withMessage('Phone number is not valid'),
+  body('email').isEmail().withMessage('Email is not valid!'),
+  (req, res) => {
+    const nameId = req.body.oldName;
+    const data = findContactDetail(nameId);
+    const errors = validationResult(req);
+    console.log(errors.mapped());
+    if (!errors.isEmpty()) {
+      return res.render('contactForm', {
+        contact: data,
+        title: 'edit Contact',
+        type: 'edit',
+        errors: errors.mapped(),
+      });
+    }
+
+    const { oldName, name, phone, email } = req.body;
+    const contact = {
+      name: oldName,
+      newName: name,
+      newPhone: phone,
+      newEmail: email,
+    };
+
+    updateContact(contact);
+    res.redirect('/contact');
+  }
+);
 app.use('/', (req, res) => {
   res.status(404);
   res.send('404 Page not found');
