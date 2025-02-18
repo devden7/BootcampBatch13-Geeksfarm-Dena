@@ -48,7 +48,7 @@
         />
       </div>
       <% if (type === 'edit') { %>
-        <input type="hidden" name="oldName" value="<%= contact.name %>" />
+        <input type="hidden" name="oldName" value="<%=Object.values(errors).length > 0 ? contact.oldName:  contact.name %>" />
       <% } %>
 
       <% if (errors.email !== undefined) { %>

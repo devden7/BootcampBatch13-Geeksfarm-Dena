@@ -119,7 +119,7 @@ app.get('/edit-contact/:name', (req, res) => {
 });
 
 app.post(
-  '/update-contact/',
+  '/update-contact',
   body('name').custom((value, { req }) => {
     if (value.toLowerCase() === req.body.oldName.toLowerCase()) {
       return true;
@@ -138,20 +138,20 @@ app.post(
   body('phone').isMobilePhone('id-ID').withMessage('Phone number is not valid'),
   body('email').isEmail().withMessage('Email is not valid!'),
   (req, res) => {
-    const nameId = req.body.oldName;
-    const data = findContactDetail(nameId);
+    const { oldName, name, phone, email } = req.body;
     const errors = validationResult(req);
-    console.log(errors.mapped());
+    const data = findContactDetail(oldName);
+    const errorObj = errors.mapped();
+
     if (!errors.isEmpty()) {
       return res.render('contactForm', {
-        contact: data,
+        contact: { ...data, name, oldName, phone, email },
         title: 'edit Contact',
         type: 'edit',
-        errors: errors.mapped(),
+        errors: errorObj,
       });
     }
 
-    const { oldName, name, phone, email } = req.body;
     const contact = {
       name: oldName,
       newName: name,
