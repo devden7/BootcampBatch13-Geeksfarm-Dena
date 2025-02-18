@@ -8,7 +8,7 @@
       <label for="name" class="block mb-2 text-sm font-medium text-gray-900"> Name </label>
       <div class="mb-3">
         <input
-        value='<%= type === 'add' ? '' : contact.name %>'
+        value='<%= contact.name %>'
           type="text"
           placeholder="your name"
           name="name"
@@ -23,7 +23,7 @@
       <label for="phone" class="block mb-2 text-sm font-medium text-gray-900"> Phone number </label>
       <div class="mb-3">
         <input
-        value='<%= type === 'add' ? '' : contact.phone %>'
+        value='<%= contact.phone %>'
           type="text"
           placeholder="your number"
           name="phone"
@@ -38,8 +38,7 @@
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900"> Email </label>
       <div>
         <input
-        value='<%= type === 'add' ? '' : contact.email %>'
-          
+          value='<%= contact.email %>'
           placeholder="your email"
           name="email"
           id="email"

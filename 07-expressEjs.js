@@ -61,7 +61,13 @@ app.get('/product/:idProduct/', (req, res) => {
 });
 
 app.get('/add-contact', (req, res) => {
-  res.render('contactForm', { title: 'Add Contact', type: 'add', errors: {} });
+  const data = { name: '', phone: '', email: '' };
+  res.render('contactForm', {
+    contact: data,
+    title: 'Add Contact',
+    type: 'add',
+    errors: {},
+  });
 });
 
 app.post(
@@ -82,9 +88,10 @@ app.post(
   (req, res) => {
     const errors = validationResult(req);
     const { name, phone, email } = req.body;
-
+    const data = { name, phone, email };
     if (!errors.isEmpty()) {
       return res.render('contactForm', {
+        contact: data,
         title: 'Add Contact',
         type: 'add',
         errors: errors.mapped(),
