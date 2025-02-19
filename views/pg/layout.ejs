@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="h-12">
+        <ul
+          class="h-full border-b border-gray-200 flex justify-center gap-2 items-center"
+        >
+          <li class="hover:text-blue-400">
+            <a href="/">Home</a>
+          </li>
+          <li class="hover:text-blue-400"><a href="/contact">contact</a></li>
+          <li class="hover:text-blue-400"><a href="/about">about</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="max-w-[1400px] mx-auto"><%- body %></main>
+  </body>
+</html>

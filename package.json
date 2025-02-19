@@ -11,6 +11,7 @@
     "04": "node 04-errorHandling",
     "06": "nodemon 06-httpCoreModule",
     "07": "nodemon 07-expressEjs",
+    "08": "nodemon 08-postgresql",
     "fol": "ls",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +23,7 @@
     "express-ejs-layouts": "^2.5.1",
     "express-validator": "^7.2.1",
     "morgan": "^1.10.0",
+    "pg": "^8.13.3",
     "validator": "^13.12.0",
     "yargs": "^17.7.2"
   }
