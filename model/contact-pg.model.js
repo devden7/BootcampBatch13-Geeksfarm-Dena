@@ -28,8 +28,7 @@ const updateData = async (contact) => {
   await pool.query(`UPDATE contacts
 SET name = '${contact.newName}',
     mobile = '${contact.newMobile}',
-    email = '${contact.newEmail}',
-    gender = '${contact.newEmail}'
+    email = '${contact.newEmail}'
 WHERE name = '${contact.name}'`);
 };
 

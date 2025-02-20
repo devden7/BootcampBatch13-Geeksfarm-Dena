@@ -76,7 +76,10 @@ app.post(
   body('mobile')
     .isMobilePhone('id-ID')
     .withMessage('Phone number is not valid'),
-  body('email').isEmail().withMessage('Email is not valid!'),
+  body('email')
+    .isEmail()
+    .optional({ checkFalsy: true })
+    .withMessage('Email is not valid!'),
   (req, res) => {
     const errors = validationResult(req);
     const { name, mobile, email } = req.body;
@@ -139,7 +142,10 @@ app.post(
   body('mobile')
     .isMobilePhone('id-ID')
     .withMessage('Phone number is not valid'),
-  body('email').isEmail().withMessage('Email is not valid!'),
+  body('email')
+    .isEmail()
+    .optional({ checkFalsy: true })
+    .withMessage('Email is not valid!'),
   async (req, res) => {
     const { oldName, name, mobile, email } = req.body;
     const errors = validationResult(req);
