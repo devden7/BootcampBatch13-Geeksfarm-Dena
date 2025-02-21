@@ -17,3 +17,12 @@
 5.  **Yargs (read data,edit data,delete data)**
 6.  **Http Core Module**
 7.  **Express & Ejs (render list contacts and detail contact)**
+
+## Minggu ketiga | 17 Feb 2025 - 21 Feb 2025
+
+### Materi :
+
+7.  **Express & Ejs (add, edit, delete)**
+8.  **Express & Ejs (add express-validator)**
+9.  **CRUD Express & Ejs, PostgreSQL**
+10. **React.JS/my_first_react (Introduction & using faker for dummy data)**
