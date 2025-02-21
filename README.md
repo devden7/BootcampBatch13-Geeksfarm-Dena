@@ -23,6 +23,6 @@
 ### Materi :
 
 7.  **Express & Ejs (add, edit, delete)**
-8.  **Express & Ejs (add express-validator)**
-9.  **CRUD Express & Ejs, PostgreSQL**
-10. **React.JS/my_first_react (Introduction & using faker for dummy data)**
+7.  **Express & Ejs (add express-validator)**
+8.  **CRUD Express & Ejs, PostgreSQL**
+9. **React.JS/my_first_react (Introduction & using faker for dummy data)**
