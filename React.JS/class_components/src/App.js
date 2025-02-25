@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Navbar from './components/Navbar';
 import Comment from './components/Comment';
 import Counting from './components/ButtonClick';
+import Clock from './components/Clock';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
         <Navbar />
         <h1>This is react</h1>
         <Counting />
+        <Clock />
         <Comment />
       </div>
     );
