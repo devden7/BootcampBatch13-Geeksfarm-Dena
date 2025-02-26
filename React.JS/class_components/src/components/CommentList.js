@@ -27,7 +27,7 @@ class CommentList extends Component {
               <div>
                 <button
                   onClick={() => likeHandler(index)}
-                  className="bg-blue-700 py-1 px-3 text-white cursor-pointer hover:bg-blue-800 duration-300 rounded-full"
+                  className="btn-primary"
                 >
                   Like
                 </button>

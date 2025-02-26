@@ -9,12 +9,18 @@ class Counting extends PureComponent {
   }
   render() {
     return (
-      <div className="flex items-center flex-col gap-2">
-        <h1>You clicked {this.state.count} times</h1>
+      <div className="flex items-center justify-center flex-col gap-2 h-96">
+        <p className="text-xl">
+          You clicked{' '}
+          <span className="text-3xl text-blue-700 font-bold">
+            {this.state.count}
+          </span>{' '}
+          times
+        </p>
         <div>
           <button
             onClick={() => this.setState({ count: this.state.count + 1 })}
-            className="bg-blue-700 p-3 text-white cursor-pointer hover:bg-blue-800 duration-300 rounded-full"
+            className="btn-primary"
           >
             Click me
           </button>

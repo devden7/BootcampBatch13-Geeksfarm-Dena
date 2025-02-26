@@ -9,7 +9,7 @@ class Clock extends Component {
   constructor() {
     super();
     this.state = {
-      currentTime: '',
+      currentTime: getTime(),
     };
   }
 
@@ -25,9 +25,9 @@ class Clock extends Component {
 
   render() {
     return (
-      <div className="text-center mt-4">
-        <h2>Current time</h2>
-        <p>{this.state.currentTime}</p>
+      <div className="flex flex-wrap gap-2">
+        <p>Current time : </p>
+        <p className="font-bold">{this.state.currentTime}</p>
       </div>
     );
   }

@@ -33,16 +33,13 @@ class Form extends Component {
 
   render() {
     return (
-      <form
-        onSubmit={this.handleSubmit}
-        className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm"
-      >
-        <label className="font-semibold text-2xl mb-5">Image Search</label>
+      <form onSubmit={this.handleSubmit} className="mt-3">
         <input
-          type="text"
+          type="search"
           value={this.state.value}
           onChange={this.handleChange}
-          className="border-2 border-gray-200 p-2 rounded-md mt-5"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-blue-700 block p-2.5"
+          placeholder="Find an Image"
         />
       </form>
     );

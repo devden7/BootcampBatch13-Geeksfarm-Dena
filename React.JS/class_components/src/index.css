@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .btn-primary {
+    @apply bg-blue-700 py-1 px-3 text-white cursor-pointer hover:bg-blue-800 duration-300 rounded-full;
+  }
+
+  .h2-title {
+    @apply text-xl font-bold border-b border-gray-200;
+  }
+}

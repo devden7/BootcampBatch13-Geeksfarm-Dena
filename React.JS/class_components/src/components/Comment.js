@@ -33,24 +33,26 @@ class Comment extends Component {
   };
   render() {
     return (
-      <div className="ui comments pb-10">
-        <h3 className="ui dividing header">Comments</h3>
-        <div className="flex flex-col gap-5">
-          {this.state.data.map((value, i) => (
-            <div key={i}>
-              <CommentList
-                avatar={value.avatar}
-                fullName={value.fullName}
-                date={value.date}
-                description={value.description}
-                likes={value.likes}
-                index={i}
-                likeHandler={this.likeHandler}
-              />
-            </div>
-          ))}
+      <section className="mt-3">
+        <div className="ui comments pb-10  !max-w-full">
+          <h3 className="ui dividing header">Comments</h3>
+          <div className="flex flex-col gap-5">
+            {this.state.data.map((value, i) => (
+              <div key={i}>
+                <CommentList
+                  avatar={value.avatar}
+                  fullName={value.fullName}
+                  date={value.date}
+                  description={value.description}
+                  likes={value.likes}
+                  index={i}
+                  likeHandler={this.likeHandler}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 }
