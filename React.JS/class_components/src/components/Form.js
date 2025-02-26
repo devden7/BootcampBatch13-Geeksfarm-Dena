@@ -21,7 +21,7 @@ class Form extends Component {
       event.preventDefault();
       await axios({
         method: 'get',
-        url: `https://api.unsplash.com/search/photos?quey=${this.state.search}`,
+        url: `https://api.unsplash.com/search/photos?query=${this.state.search}`,
         headers: {
           Authorization: `Client-ID ${process.env.REACT_APP_ACCESS_KEY}`,
         },
