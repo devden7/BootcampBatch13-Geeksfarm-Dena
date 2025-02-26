@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Comment from './components/Comment';
 import Counting from './components/ButtonClick';
 import Clock from './components/Clock';
+import FetchApi from './components/FetchApi';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Counting />
         <Clock />
         <Comment />
+        <FetchApi />
       </div>
     );
   }
