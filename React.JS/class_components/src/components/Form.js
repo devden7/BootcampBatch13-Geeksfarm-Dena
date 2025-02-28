@@ -65,7 +65,7 @@ class Form extends Component {
             {this.state.data.map((value) => (
               <ListImages
                 key={value.id}
-                urlImage={value.urls.regular}
+                urlImage={value.urls.small}
                 alt={value.alt_description}
               />
             ))}
