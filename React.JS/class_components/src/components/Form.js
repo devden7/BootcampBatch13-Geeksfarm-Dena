@@ -7,7 +7,11 @@ class Form extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { search: '', data: [], isLoading: false };
+    this.state = {
+      search: '',
+      data: [],
+      isLoading: false,
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -61,7 +65,7 @@ class Form extends Component {
           </div>
         )}
         {this.state.data.length > 0 && !this.state.isLoading && (
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-3">
+          <div className="columns-4 gap-x-4 gap-y-2 mt-3">
             {this.state.data.map((value) => (
               <ListImages
                 key={value.id}

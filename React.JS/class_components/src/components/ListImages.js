@@ -1,13 +1,26 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 
 class ListImages extends Component {
+  imageRef = createRef();
+  constructor() {
+    super();
+    this.state = {
+      height: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({ height: this.imageRef.current.clientHeight });
+  }
   render() {
+    const heigthCss = `max-h-[${this.state.height}px] mb-2`;
+    console.log(this.imageRef);
     return (
-      <div className="w-40 h-40 bg-white border border-gray-200 rounded-lg shadow-sm overflow-hidden  flex justify-center items-center">
+      <div className={`${heigthCss} `}>
         <img
           src={this.props.urlImage}
           alt={this.props.alt}
-          className="size-full object-cover"
+          ref={this.imageRef}
         />
       </div>
     );
