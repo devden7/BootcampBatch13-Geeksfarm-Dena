@@ -10,13 +10,15 @@ class ListImages extends Component {
   }
 
   componentDidMount() {
-    this.setState({ height: this.imageRef.current.clientHeight });
+    this.imageRef.current.addEventListener('load', () => {
+      this.setState({
+        height: Math.ceil(this.imageRef.current.clientHeight / 10),
+      });
+    });
   }
   render() {
-    const heigthCss = `max-h-[${this.state.height}px] mb-2`;
-    console.log(this.imageRef);
     return (
-      <div className={`${heigthCss} `}>
+      <div style={{ gridRowEnd: `span ${this.state.height}` }}>
         <img
           src={this.props.urlImage}
           alt={this.props.alt}

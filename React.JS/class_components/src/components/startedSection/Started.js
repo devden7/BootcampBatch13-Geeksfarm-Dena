@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Counting from './ButtonClick';
-import Clock from './Clock';
+import Clock from '../Clock';
 
 class Started extends Component {
   render() {

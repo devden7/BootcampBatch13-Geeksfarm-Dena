@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Form from './Form';
+import UnsplashImage from './UnsplashImage';
 import YoutubeVideo from './YoutubeVideo';
 
 class FetchApi extends Component {
@@ -7,7 +7,7 @@ class FetchApi extends Component {
     return (
       <section className="mt-3">
         <h2 className="h2-title">Fetch Api</h2>
-        <Form />
+        <UnsplashImage />
         <YoutubeVideo />
       </section>
     );

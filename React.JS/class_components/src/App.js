@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import Comment from './components/Comment';
-import FetchApi from './components/FetchApi';
-import Layout from './components/Layout';
-import Started from './components/Started';
+import Comment from './components/commentSection/Comment';
+import FetchApi from './components/fetchApiSection/FetchApi';
+import Layout from './components/layout/Layout';
+import Started from './components/startedSection/Started';
 import './index.css';
 
 class App extends Component {

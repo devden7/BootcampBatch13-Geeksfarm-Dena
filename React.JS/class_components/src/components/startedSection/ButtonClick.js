@@ -1,6 +1,6 @@
-import { PureComponent } from 'react';
+import { Component } from 'react';
 
-class Counting extends PureComponent {
+class Counting extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,8 +13,8 @@ class Counting extends PureComponent {
         <p className="text-xl">
           You clicked{' '}
           <span className="text-3xl text-blue-700 font-bold">
-            {this.state.count}
-          </span>{' '}
+            {this.state.count}{' '}
+          </span>
           times
         </p>
         <div>
