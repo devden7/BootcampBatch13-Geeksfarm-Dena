@@ -56,7 +56,9 @@ class Form extends Component {
 
         {this.state.data.length === 0 && !this.state.isLoading && (
           <div>
-            <p className="text-center">No images...</p>
+            <p className="flex justify-center items-center h-72 w-full">
+              No images...
+            </p>
           </div>
         )}
         {this.state.isLoading && (
