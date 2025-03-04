@@ -1,16 +1,15 @@
-import Hooks from './components/hookSection/Hooks';
-import Comment from './components/commentSection/Comment';
-import Layout from './components/layout/Layout';
-import Started from './components/startedSection/Started';
+import { Routes, Route } from 'react-router';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
 const App = () => {
   return (
-    <Layout>
-      <h1 className="text-2xl font-bold">React Functional Component</h1>
-      <Started />
-      <Comment />
-      <Hooks />
-    </Layout>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 };
 
