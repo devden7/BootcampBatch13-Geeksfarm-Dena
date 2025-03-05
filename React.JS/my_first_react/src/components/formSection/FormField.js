@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 const FormField = () => {
   const [valueInput, setValueInput] = useState(null);
   const [isPreferred, setIsPreferred] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     setValueInput(JSON.stringify(data, null, 2));
     alert(JSON.stringify(data, null, 2));
@@ -12,6 +12,7 @@ const FormField = () => {
 
   const resetHandler = () => {
     setValueInput(null);
+    reset();
   };
   return (
     <div className="mx-auto max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow-sm mt-3">
@@ -64,9 +65,7 @@ const FormField = () => {
           </select>
         </div>
         <div className="flex justify-between  items-start">
-          <p>
-            Expertise<span className="text-red-500 text-lg">*</span>
-          </p>
+          <p>Expertise</p>
           <div className="flex flex-col w-3/4">
             <div className="flex gap-2 items-center">
               <input
@@ -153,9 +152,7 @@ const FormField = () => {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <p>
-            Notes<span className="text-red-500 text-lg">*</span>
-          </p>
+          <p>Notes</p>
           <textarea
             {...register('notes')}
             className="w-3/4 border-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:outline-none focus:border-blue-700 p-2.5"
