@@ -3,6 +3,7 @@ import Layout from '../components/layout/Layout';
 import Started from '../components/startedSection/Started';
 import Comment from '../components/commentSection/Comment';
 import Hooks from '../components/hookSection/Hooks';
+import HookForm from '../components/formSection/HookForm';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Started />
       <Comment />
       <Hooks />
+      <HookForm />
     </Layout>
   );
 };
