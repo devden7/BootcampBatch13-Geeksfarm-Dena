@@ -7,7 +7,7 @@ const AdjustNumber = () => {
   return (
     <div className="flex items-center justify-center flex-col gap-2 h-96">
       <p className="text-xl">
-        You Number{' '}
+        Your Number{' '}
         <span className="text-3xl text-blue-700 font-bold">{counter}</span>
       </p>
       <div className="flex gap-2">
