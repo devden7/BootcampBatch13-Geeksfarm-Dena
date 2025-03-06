@@ -12,12 +12,14 @@
     "06": "nodemon 06-httpCoreModule",
     "07": "nodemon 07-expressEjs",
     "08": "nodemon 08-postgresql",
+    "09": "nodemon 09-contactApp",
     "fol": "ls",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dena Sudarajat",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-ejs-layouts": "^2.5.1",
