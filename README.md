@@ -1,6 +1,6 @@
 # BootcampBatch13-Geeksfarm-Dena
 
-## Minggu pertama | 3 Feb 2025 - 7 Feb 2025
+## Minggu pertama Februari | 3 Feb 2025 - 7 Feb 2025
 
 ### Materi :
 
@@ -24,8 +24,8 @@
 
 7.  **Express & Ejs (add, edit, delete)**
 8.  **Express & Ejs (add express-validator)**
-9.  **CRUD Express & Ejs, PostgreSQL**
-10. **React.JS/my_first_react (Introduction & using faker for dummy data)**
+- **CRUD Express & Ejs, PostgreSQL**
+- **React.JS/my_first_react (Introduction & using faker for dummy data)**
 
 ## Minggu keempat | 24 Feb 2025 - 28 Feb 2025
 
@@ -36,3 +36,13 @@
 - **React.JS/class_components (fetch API data using Axios and Unsplash)**
 - **React.JS/class_components (render images data from API)**
 - **React.JS/class_components (styling images section)**
+
+## Minggu pertama Maret | 3 Mar 2025 - 7 Mar 2025
+
+### Materi :
+
+- **React.JS/class_components (Fetch Youtube API)**
+- **React.JS/my_first_react (Hooks & Redux)**
+- **React.JS/my_first_react (react-router-dom & styled components)**
+- **React.JS/my_first_react (redux devtools & form with react-hook-form)**
+- **09-contactApp & React.JS/contact-app (build Contact App using Node, Express, Express validator, Pg, Cors, DotEnv, React Hooks, Axios, React hook form, & React router dom)**
