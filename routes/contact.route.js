@@ -2,6 +2,7 @@ const express = require('express');
 const {
   getContactsList,
   addNewContact,
+  getContactDetail,
 } = require('../controllers/contact-api.controller.js');
 const { body } = require('express-validator');
 const { getDataContactApi } = require('../model/contact-api.model.js');
@@ -9,6 +10,7 @@ const { getDataContactApi } = require('../model/contact-api.model.js');
 const router = express.Router();
 
 router.get('/contacts', getContactsList);
+router.get('/contact/:name', getContactDetail);
 router.post(
   '/create-contact',
   body('name').custom(async (value) => {

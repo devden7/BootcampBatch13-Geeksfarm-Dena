@@ -6,6 +6,14 @@ const getDataContactApi = async () => {
   return query.rows;
 };
 
+const getContactDetailApi = async (name) => {
+  const query = await pool.query(
+    `SELECT * FROM contacts WHERE name = '${name}'`
+  );
+
+  return query.rows[0];
+};
+
 const addData = async (contact) => {
   await pool.query(
     `INSERT INTO contacts values ('${contact.name}', '${contact.mobile}', '${contact.email}') RETURNING *`
@@ -14,5 +22,6 @@ const addData = async (contact) => {
 
 module.exports = {
   getDataContactApi,
+  getContactDetailApi,
   addData,
 };
