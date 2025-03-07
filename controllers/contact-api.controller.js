@@ -4,6 +4,7 @@ const {
   getContactDetailApi,
   addData,
   deleteContactApi,
+  updateContactApi,
 } = require('../model/contact-api.model');
 
 const getContactsList = async (req, res, next) => {
@@ -89,9 +90,48 @@ const deleteContact = async (req, res, next) => {
   }
 };
 
+const updateContact = async (req, res, next) => {
+  try {
+    const paramsId = req.params.name;
+
+    const findContact = await getContactDetailApi(paramsId);
+    if (!findContact) {
+      const error = new Error('Contact not found');
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const { name, mobile, email } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const error = new Error('Error validation');
+      error.statusCode = 422;
+      error.errors = errors.array();
+      throw error;
+    }
+
+    const contact = {
+      oldName: paramsId,
+      name,
+      mobile,
+      email,
+    };
+
+    await updateContactApi(contact);
+    res.status(201).json({
+      message: 'Success',
+      statusCode: 201,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getContactsList,
   getContactDetail,
   addNewContact,
   deleteContact,
+  updateContact,
 };

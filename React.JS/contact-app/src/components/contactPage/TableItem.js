@@ -21,12 +21,12 @@ const TableItem = ({ name, email, index, deleteContactHandler }) => {
           Delete
         </button>
 
-        <a
-          href="/edit-contact/<%= value.name %>"
+        <Link
+          to={`/edit-contact/${name}`}
           className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1"
         >
           Edit
-        </a>
+        </Link>
       </td>
     </tr>
   );

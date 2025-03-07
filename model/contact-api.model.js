@@ -24,9 +24,18 @@ const deleteContactApi = async (name) => {
   await pool.query(`DELETE FROM contacts WHERE name = '${name}'`);
 };
 
+const updateContactApi = async (contact) => {
+  await pool.query(`UPDATE contacts
+SET name = '${contact.name}',
+    mobile = '${contact.mobile}',
+    email = '${contact.email}'
+WHERE name = '${contact.oldName}'`);
+};
+
 module.exports = {
   getDataContactApi,
   getContactDetailApi,
   addData,
   deleteContactApi,
+  updateContactApi,
 };
