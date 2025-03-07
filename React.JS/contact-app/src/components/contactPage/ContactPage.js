@@ -24,8 +24,20 @@ const ContactPage = () => {
     getContactData();
   }, []);
 
+  const deleteContactHandler = async (name) => {
+    try {
+      await instanceContact.delete(`/delete/${name}`);
+      setData((prev) => {
+        const newData = prev.filter((item) => item.name !== name);
+        return newData;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <section className="relative overflow-x-auto ">
+    <section className="relative overflow-x-auto">
       <div className="my-4">
         <Link
           to="/add-contact"
@@ -40,7 +52,14 @@ const ContactPage = () => {
         isLoading={isLoading}
         content="Contact not found..."
       />
-      <div>{data.length > 0 && <ContactTable data={data} />}</div>
+      {data.length > 0 && (
+        <div>
+          <ContactTable
+            data={data}
+            deleteContactHandler={deleteContactHandler}
+          />
+        </div>
+      )}
     </section>
   );
 };

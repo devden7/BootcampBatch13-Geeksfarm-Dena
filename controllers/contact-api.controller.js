@@ -3,6 +3,7 @@ const {
   getDataContactApi,
   getContactDetailApi,
   addData,
+  deleteContactApi,
 } = require('../model/contact-api.model');
 
 const getContactsList = async (req, res, next) => {
@@ -68,8 +69,29 @@ const addNewContact = async (req, res, next) => {
   }
 };
 
+const deleteContact = async (req, res, next) => {
+  try {
+    const paramsId = req.params.name;
+    const findContact = await getContactDetailApi(paramsId);
+    if (!findContact) {
+      const error = new Error('Contact not found');
+      error.statusCode = 404;
+      throw error;
+    }
+    await deleteContactApi(paramsId);
+
+    res.status(201).json({
+      message: 'Success',
+      statusCode: 201,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getContactsList,
   getContactDetail,
   addNewContact,
+  deleteContact,
 };

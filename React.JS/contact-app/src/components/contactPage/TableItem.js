@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const TableItem = ({ name, email, index }) => {
+const TableItem = ({ name, email, index, deleteContactHandler }) => {
   return (
     <tr className="bg-white border-b border-gray-200">
       <td className="px-6 py-4">{index + 1}</td>
@@ -14,15 +14,13 @@ const TableItem = ({ name, email, index }) => {
           Detail
         </Link>
 
-        <form action="/delete" method="post">
-          <input type="hidden" name="name" value="<%= value.name %>" />
-          <button
-            className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-2 py-1 cursor-pointer"
-            type="submit"
-          >
-            Delete
-          </button>
-        </form>
+        <button
+          className="text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-2 py-1 cursor-pointer"
+          onClick={() => deleteContactHandler(name)}
+        >
+          Delete
+        </button>
+
         <a
           href="/edit-contact/<%= value.name %>"
           className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-1"

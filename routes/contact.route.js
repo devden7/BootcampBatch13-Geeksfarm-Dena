@@ -3,6 +3,7 @@ const {
   getContactsList,
   addNewContact,
   getContactDetail,
+  deleteContact,
 } = require('../controllers/contact-api.controller.js');
 const { body } = require('express-validator');
 const { getDataContactApi } = require('../model/contact-api.model.js');
@@ -35,5 +36,6 @@ router.post(
     .withMessage('Email is not valid!'),
   addNewContact
 );
+router.delete('/delete/:name', deleteContact);
 
 module.exports = router;

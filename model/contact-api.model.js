@@ -20,8 +20,13 @@ const addData = async (contact) => {
   );
 };
 
+const deleteContactApi = async (name) => {
+  await pool.query(`DELETE FROM contacts WHERE name = '${name}'`);
+};
+
 module.exports = {
   getDataContactApi,
   getContactDetailApi,
   addData,
+  deleteContactApi,
 };

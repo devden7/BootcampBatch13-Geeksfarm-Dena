@@ -1,8 +1,8 @@
 import TableItem from './TableItem';
 
-const ContactTable = ({ data }) => {
+const ContactTable = ({ data, deleteContactHandler }) => {
   return (
-    <table className="w-full text-sm text-left text-gray-500 h-screen">
+    <table className="w-full text-sm text-left text-gray-500">
       <thead className="text-xs text-gray-700 uppercase bg-gray-50">
         <tr>
           <th scope="col" className="px-6 py-3">
@@ -26,6 +26,7 @@ const ContactTable = ({ data }) => {
             email={item.email}
             index={i}
             key={item.name}
+            deleteContactHandler={deleteContactHandler}
           />
         ))}
       </tbody>

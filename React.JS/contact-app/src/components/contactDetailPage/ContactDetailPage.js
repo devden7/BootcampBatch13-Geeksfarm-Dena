@@ -8,7 +8,7 @@ const ContactDetailPage = () => {
   const [isLoading, setIsLoading] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+
   const getContactDetail = async () => {
     try {
       setIsLoading(true);
@@ -22,9 +22,10 @@ const ContactDetailPage = () => {
       setIsLoading(false);
     }
   };
-  console.log(data);
+
   useEffect(() => {
     getContactDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
