@@ -1,13 +1,9 @@
 const pool = require('../utils/db');
 
 const getDataContactApi = async () => {
-  try {
-    const query = await pool.query(`SELECT * FROM contacts`);
+  const query = await pool.query(`SELECT * FROM contacts`);
 
-    return query.rows;
-  } catch (error) {
-    throw error;
-  }
+  return query.rows;
 };
 
 const addData = async (contact) => {

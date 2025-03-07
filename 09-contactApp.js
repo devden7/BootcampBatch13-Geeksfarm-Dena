@@ -1,83 +1,26 @@
 const express = require('express');
-const { getDataContactApi, addData } = require('./model/contact-api.model');
 const app = express();
 const cors = require('cors');
-const { validationResult, body } = require('express-validator');
-app.use(express.json());
+const { ORIGIN_URL, PORT_LISTEN } = require('./lib/configEnv.js');
+const errorHandler = require('./middleware/errorHandling.js');
 
-var corsOptions = {
-  origin: 'http://localhost:3000',
+//Contact Routes
+const contactRoutes = require('./routes/contact.route.js');
+const morgan = require('morgan');
+
+app.use(express.json());
+app.use(morgan('dev'));
+
+const corsOptions = {
+  origin: ORIGIN_URL,
 };
 
-//GET CONTACTS LIST
-app.get('/contact', cors(corsOptions), async (req, res) => {
-  try {
-    const data = await getDataContactApi();
+app.use(cors(corsOptions));
 
-    res.status(200).json({
-      message: 'Success',
-      data,
-      statusCode: 200,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: 'Internal Server Error',
-      error,
-      statusCode: 500,
-    });
-  }
-});
+app.use(contactRoutes);
 
-//ADD CONTACT
-app.options('/create-contact', cors(corsOptions));
-app.post(
-  '/create-contact',
-  cors(corsOptions),
-  body('name').custom(async (value) => {
-    const data = await getDataContactApi();
+app.use(errorHandler);
 
-    const findDataInput = data.find(
-      (item) => item.name.toLowerCase() === value.toLowerCase()
-    );
-    if (findDataInput) {
-      throw new Error('Name already exist');
-    }
-
-    return true;
-  }),
-  body('mobile')
-    .isMobilePhone('id-ID')
-    .withMessage('Phone number is not valid'),
-  body('email')
-    .isEmail()
-    .optional({ checkFalsy: true })
-    .withMessage('Email is not valid!'),
-  (req, res) => {
-    const errors = validationResult(req);
-    const { name, mobile, email } = req.body;
-
-    if (!errors.isEmpty()) {
-      return res.status(401).json({
-        message: 'Invalid input',
-        statusCode: '401',
-        errors: errors.array(),
-      });
-    }
-
-    const contact = {
-      name,
-      mobile,
-      email,
-    };
-    addData(contact);
-
-    res.status(201).json({
-      message: 'Success',
-      statusCode: 201,
-    });
-  }
-);
-
-app.listen(3001, () => {
-  console.log('running express in localhost:3001');
+app.listen(PORT_LISTEN, () => {
+  console.log(`running express in localhost:${PORT_LISTEN}`);
 });

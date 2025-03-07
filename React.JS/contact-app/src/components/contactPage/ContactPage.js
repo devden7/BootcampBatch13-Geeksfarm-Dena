@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import ContactTable from './ContactTable';
 import { Link } from 'react-router-dom';
+import { instanceContact } from '../../lib/axios';
+import Loading from '../Loading';
+import NotFoundList from '../NotFoundList';
 
 const ContactPage = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(null);
   const getContactData = async () => {
     try {
-      const response = await axios({
-        method: 'get',
-        url: `http://localhost:3001/contact`,
-      });
+      setIsLoading(true);
+      const response = await instanceContact.get('/contacts');
       setData(response.data.data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -21,24 +24,23 @@ const ContactPage = () => {
     getContactData();
   }, []);
 
-  console.log(data);
   return (
     <section className="relative overflow-x-auto ">
-      <div className="mb-4">
+      <div className="my-4">
         <Link
           to="/add-contact"
-          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-2 py-3"
+          className="text-gray-900 bg-white border border-gray-300 duration-300 hover:bg-gray-100 font-medium rounded-lg text-sm p-2"
         >
           Add Contact
         </Link>
       </div>
-      <div>
-        {data.length === 0 && (
-          <p className="text-center">Contact data is empty</p>
-        )}
-
-        {data.length > 0 && <ContactTable data={data} />}
-      </div>
+      <Loading isLoading={isLoading} content="Loading..." />
+      <NotFoundList
+        data={data}
+        isLoading={isLoading}
+        content="Contact not found..."
+      />
+      <div>{data.length > 0 && <ContactTable data={data} />}</div>
     </section>
   );
 };

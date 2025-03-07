@@ -1,28 +1,25 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
+import { instanceContact } from '../../lib/axios';
 
 const AddContactPage = () => {
   const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
+  const { isSubmitting } = formState;
   const onSubmit = async (data) => {
+    const { name, email, mobile } = data;
     try {
-      const response = await axios.post(
-        'http://localhost:3001/create-contact',
-        {
-          name: data.name,
-          email: data.email,
-          mobile: data.mobile,
-        }
-      );
-      console.log(response);
+      await instanceContact.post('/create-contact', {
+        name,
+        email,
+        mobile,
+      });
       navigate('/contact');
+      reset();
     } catch (error) {
       setErrors(error.response.data.errors);
-    } finally {
-      reset();
     }
   };
 
@@ -84,7 +81,8 @@ const AddContactPage = () => {
           )}
           <button
             type="submit"
-            className="bg-blue-400 py-1 rounded-md mt-3 text-white px-2 cursor-pointer hover:bg-blue-500"
+            className="bg-blue-700 duration-300 py-1 rounded-md mt-3 text-white px-2 cursor-pointer hover:bg-blue-800"
+            disabled={isSubmitting}
           >
             Add
           </button>
